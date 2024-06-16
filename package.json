@@ -16,7 +16,6 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "ruby:prettier": "bundle exec rubocop -a",
-    "prepare": "husky install",
     "size": "size-limit"
   },
   "size-limit": [
