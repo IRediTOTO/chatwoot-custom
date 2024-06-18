@@ -372,6 +372,7 @@ Rails.application.routes.draw do
         resources :agent_bots, only: [:index, :create, :show, :update, :destroy] do
           delete :avatar, on: :member
         end
+        resources :csrf_tokens, only: [:create]
         resources :accounts, only: [:create, :show, :update, :destroy] do
           resources :account_users, only: [:index, :create] do
             collection do

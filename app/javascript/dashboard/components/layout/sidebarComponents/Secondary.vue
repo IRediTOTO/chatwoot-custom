@@ -29,12 +29,14 @@ import SecondaryNavItem from './SecondaryNavItem.vue';
 import AccountContext from './AccountContext.vue';
 import { mapGetters } from 'vuex';
 import { FEATURE_FLAGS } from '../../../featureFlags';
+import adminMixin from 'dashboard/mixins/isAdmin';
 
 export default {
   components: {
     AccountContext,
     SecondaryNavItem,
   },
+  mixins: [adminMixin],
   props: {
     accountId: {
       type: Number,
@@ -89,10 +91,18 @@ export default {
             menuItem.toStateName
           ) > -1
       );
+      // eslint-disable-next-line no-console
+
       return menuItemsFilteredByRole.filter(item => {
         if (item.showOnlyOnCloud) {
           return this.isOnChatwootCloud;
         }
+
+        // remove inbox section if user is not super admin
+        // if (!this.isSuperAdmin && item.featureFlag === 'inbox_management') {
+        //   return false;
+        // }
+
         return true;
       });
     },
@@ -228,6 +238,11 @@ export default {
     },
     additionalSecondaryMenuItems() {
       let conversationMenuItems = [this.inboxSection, this.labelSection];
+      // remove inbox section if user is not super admin
+      if (!this.isSuperAdmin) {
+        conversationMenuItems = [this.labelSection];
+      }
+
       let contactMenuItems = [this.contactLabelSection];
       if (this.teams.length) {
         conversationMenuItems = [this.teamSection, ...conversationMenuItems];

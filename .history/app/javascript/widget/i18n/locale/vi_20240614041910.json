@@ -81,7 +81,7 @@
     "CAMPAIGN_HEADER": "Vui lòng cung cấp tên và địa chỉ email của bạn trước khi bắt đầu hội thoại",
     "IS_REQUIRED": "được yêu cầu",
     "REQUIRED": "Bắt buộc",
-    "REGEX_ERROR": "Vui lòng cung cấp thông tin đầu vào hợp lệ"
+    "REGEX_ERROR": "Please provide a valid input"
   },
   "FILE_SIZE_LIMIT": "Tệp vượt quá kích thước giới hạn {MAXIMUM_FILE_UPLOAD_SIZE}",
   "CHAT_FORM": {
@@ -110,9 +110,9 @@
     }
   },
   "PORTAL": {
-    "POPULAR_ARTICLES": "Bài viết phổ biến",
+    "POPULAR_ARTICLES": "Popular Articles",
     "VIEW_ALL_ARTICLES": "Xem tất cả bài viết",
-    "IFRAME_LOAD_ERROR": "Đã xảy ra lỗi khi tải bài viết, vui lòng tải lại trang và thử lại."
+    "IFRAME_LOAD_ERROR": "There was an error loading the article, please refresh the page and try again."
   },
   "ATTACHMENTS": {
     "image": {

@@ -88,13 +88,14 @@ import {
   CMD_REOPEN_CONVERSATION,
   CMD_RESOLVE_CONVERSATION,
 } from '../../routes/dashboard/commands/commandBarBusEvents';
+import adminMixin from 'dashboard/mixins/isAdmin';
 
 export default {
   components: {
     WootDropdownItem,
     WootDropdownMenu,
   },
-  mixins: [alertMixin, keyboardEventListenerMixins],
+  mixins: [alertMixin, keyboardEventListenerMixins, adminMixin],
   props: { conversationId: { type: [String, Number], required: true } },
   data() {
     return {

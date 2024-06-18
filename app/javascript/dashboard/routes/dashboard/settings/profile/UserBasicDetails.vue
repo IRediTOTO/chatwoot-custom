@@ -27,6 +27,7 @@
     <woot-input
       v-if="emailEnabled"
       v-model="userEmail"
+      :read-only="true"
       :styles="inputStyles"
       :class="{ error: $v.userEmail.$error }"
       :label="$t('PROFILE_SETTINGS.FORM.EMAIL.LABEL')"

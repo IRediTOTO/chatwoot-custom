@@ -1,5 +1,5 @@
 class Api::V1::Accounts::Channels::TwilioChannelsController < Api::V1::Accounts::BaseController
-  before_action :authorize_request
+  before_action :authorize_request, :require_super_admin
 
   def create
     process_create
@@ -8,6 +8,12 @@ class Api::V1::Accounts::Channels::TwilioChannelsController < Api::V1::Accounts:
   end
 
   private
+
+  def require_super_admin
+    return unless action_name == 'delete'
+    authenticate_super_admin
+    # Add your authentication logic here
+  end
 
   def authorize_request
     authorize ::Inbox

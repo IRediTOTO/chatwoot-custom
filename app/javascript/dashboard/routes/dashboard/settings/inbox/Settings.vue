@@ -442,6 +442,7 @@ import WidgetBuilder from './WidgetBuilder.vue';
 import BotConfiguration from './components/BotConfiguration.vue';
 import { FEATURE_FLAGS } from '../../../../featureFlags';
 import SenderNameExamplePreview from './components/SenderNameExamplePreview.vue';
+import adminMixin from 'dashboard/mixins/isAdmin';
 
 export default {
   components: {
@@ -458,7 +459,7 @@ export default {
     SenderNameExamplePreview,
     MicrosoftReauthorize,
   },
-  mixins: [alertMixin, configMixin, inboxMixin],
+  mixins: [alertMixin, configMixin, inboxMixin, adminMixin],
   data() {
     return {
       avatarFile: null,
