@@ -45,7 +45,7 @@
         </label>
       </div>
 
-      <div class="w-full">
+      <div v-if="isSuperAdmin" class="w-full">
         <label>
           {{ $t('INBOX_MGMT.ADD.WEBSITE_CHANNEL.CHANNEL_WELCOME_TITLE.LABEL') }}
           <input
@@ -134,13 +134,14 @@ import router from '../../../../index';
 import PageHeader from '../../SettingsSubPageHeader.vue';
 import GreetingsEditor from 'shared/components/GreetingsEditor.vue';
 import alertMixin from 'shared/mixins/alertMixin';
+import adminMixin from 'dashboard/mixins/isAdmin';
 
 export default {
   components: {
     PageHeader,
     GreetingsEditor,
   },
-  mixins: [alertMixin],
+  mixins: [alertMixin, adminMixin],
   data() {
     return {
       inboxName: '',

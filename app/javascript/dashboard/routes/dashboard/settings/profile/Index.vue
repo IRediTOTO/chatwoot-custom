@@ -68,6 +68,7 @@
       <notification-preferences />
     </form-section>
     <form-section
+      v-if="isSuperAdmin"
       :title="$t('PROFILE_SETTINGS.FORM.ACCESS_TOKEN.TITLE')"
       :description="
         useInstallationName(
@@ -99,6 +100,7 @@ import NotificationPreferences from './NotificationPreferences.vue';
 import AudioNotifications from './AudioNotifications.vue';
 import FormSection from 'dashboard/components/FormSection.vue';
 import AccessToken from './AccessToken.vue';
+import adminMixin from 'dashboard/mixins/isAdmin';
 
 export default {
   components: {
@@ -112,7 +114,7 @@ export default {
     AudioNotifications,
     AccessToken,
   },
-  mixins: [alertMixin, globalConfigMixin, uiSettingsMixin],
+  mixins: [alertMixin, globalConfigMixin, uiSettingsMixin, adminMixin],
   data() {
     return {
       avatarFile: '',

@@ -13,6 +13,7 @@
       :class="inputHasError"
       :placeholder="placeholder"
       :value="value"
+      :readonly="readOnly"
       @change="onChange"
     />
     <div v-if="error" class="text-red-400 mt-2 text-xs leading-3 font-medium">
@@ -54,6 +55,10 @@ export default {
     helpText: {
       type: String,
       default: '',
+    },
+    readOnly: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

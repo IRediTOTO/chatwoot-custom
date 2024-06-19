@@ -79,7 +79,7 @@
           "
         />
         <woot-input
-          v-if="isAWebWidgetInbox"
+          v-if="isAWebWidgetInbox && isSuperAdmin"
           v-model.trim="channelWelcomeTitle"
           class="w-3/4 pb-4"
           :label="
@@ -336,7 +336,7 @@
         </div>
       </settings-section>
       <settings-section
-        v-if="isAWebWidgetInbox || isAnEmailChannel"
+        v-if="(isAWebWidgetInbox || isAnEmailChannel) && isAdmin"
         :title="$t('INBOX_MGMT.EDIT.SENDER_NAME_SECTION.TITLE')"
         :sub-title="$t('INBOX_MGMT.EDIT.SENDER_NAME_SECTION.SUB_TEXT')"
         :show-border="false"

@@ -3,7 +3,7 @@
     "TITLE": "Cài đặt tài khoản",
     "SUBMIT": "Cập nhật cài đặt",
     "BACK": "Trờ về",
-    "DISMISS": "Dismiss",
+    "DISMISS": "Loại bỏ",
     "UPDATE": {
       "ERROR": "Không thể cập nhật cài đặt, hãy thử lại!",
       "SUCCESS": "Đã cập nhật thành công cài đặt tài khoản"
@@ -107,7 +107,7 @@
       "GENERAL": "Chung",
       "REPORTS": "Báo cáo",
       "CONVERSATION": "Hội thoại",
-      "BULK_ACTIONS": "Bulk Actions",
+      "BULK_ACTIONS": "Tác vụ hàng loạt",
       "CHANGE_ASSIGNEE": "Thay đổi người được phân công",
       "CHANGE_PRIORITY": "Change Priority",
       "CHANGE_TEAM": "Thay đổi nhóm",
@@ -116,8 +116,8 @@
       "REMOVE_LABEL": "Xoá nhãn khỏi hội thoại",
       "SETTINGS": "Cài đặt",
       "AI_ASSIST": "AI Assist",
-      "APPEARANCE": "Appearance",
-      "SNOOZE_NOTIFICATION": "Snooze Notification"
+      "APPEARANCE": "Giao diện",
+      "SNOOZE_NOTIFICATION": "Tạm dừng thông báo"
     },
     "COMMANDS": {
       "GO_TO_CONVERSATION_DASHBOARD": "Đi tới Trang tổng quan hội thoại",
@@ -152,14 +152,14 @@
       "UNTIL_NEXT_REPLY": "Cho đến phản hồi kế tiếp",
       "UNTIL_NEXT_WEEK": "Cho đến tuần sau",
       "UNTIL_TOMORROW": "Cho đến ngày mai",
-      "UNTIL_NEXT_MONTH": "Until next month",
-      "AN_HOUR_FROM_NOW": "Until an hour from now",
-      "CUSTOM": "Custom...",
-      "CHANGE_APPEARANCE": "Change Appearance",
-      "LIGHT_MODE": "Light",
-      "DARK_MODE": "Dark",
-      "SYSTEM_MODE": "System",
-      "SNOOZE_NOTIFICATION": "Snooze Notification"
+      "UNTIL_NEXT_MONTH": "Cho đến tháng sau",
+      "AN_HOUR_FROM_NOW": "Cho đến một giờ kể từ bây giờ",
+      "CUSTOM": "Tùy chỉnh...",
+      "CHANGE_APPEARANCE": "Thay đổi giao diện",
+      "LIGHT_MODE": "Sáng",
+      "DARK_MODE": "Tối",
+      "SYSTEM_MODE": "Hệ thống",
+      "SNOOZE_NOTIFICATION": "Tạm dừng thông báo"
     }
   },
   "DASHBOARD_APPS": {

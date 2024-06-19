@@ -205,4 +205,5 @@ const runSDK = async ({ baseUrl, websiteToken }) => {
 
 window.chatwootSDK = {
   run: runSDK,
+  IFrameHelper,
 };
