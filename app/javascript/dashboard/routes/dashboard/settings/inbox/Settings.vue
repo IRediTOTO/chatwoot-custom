@@ -183,7 +183,7 @@
           </p>
         </label>
 
-        <label v-if="isAWebWidgetInbox" class="w-3/4 pb-4">
+        <label v-if="isAWebWidgetInbox" class="w-3/4 pb-4 hidden">
           {{ $t('INBOX_MGMT.SETTINGS_POPUP.ENABLE_EMAIL_COLLECT_BOX') }}
           <select v-model="emailCollectEnabled">
             <option :value="true">
@@ -336,7 +336,7 @@
         </div>
       </settings-section>
       <settings-section
-        v-if="(isAWebWidgetInbox || isAnEmailChannel) && isAdmin"
+        v-if="(isAWebWidgetInbox || isAnEmailChannel) && isSuperAdmin"
         :title="$t('INBOX_MGMT.EDIT.SENDER_NAME_SECTION.TITLE')"
         :sub-title="$t('INBOX_MGMT.EDIT.SENDER_NAME_SECTION.SUB_TEXT')"
         :show-border="false"

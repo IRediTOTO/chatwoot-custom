@@ -197,7 +197,7 @@ const runSDK = async ({ baseUrl, websiteToken }) => {
     },
   };
 
-  IFrameHelper.createFrame({
+  await IFrameHelper.createFrame({
     baseUrl,
     websiteToken,
   });

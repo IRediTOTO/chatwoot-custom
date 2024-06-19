@@ -472,7 +472,7 @@
       "DISPLAY_FILE_PICKER": "Hiển thị bộ chọn tệp trên tiện ích con",
       "DISPLAY_EMOJI_PICKER": "Hiển thị bộ chọn biểu tượng cảm xúc trên tiện ích con",
       "ALLOW_END_CONVERSATION": "Cho phép người dùng kết thúc cuộc trò chuyện từ công cụ chat",
-      "USE_INBOX_AVATAR_FOR_BOT": "Use inbox name and avatar for the bot"
+      "USE_INBOX_AVATAR_FOR_BOT": "Sử dụng tên hộp thư đến và hình đại diện cho bot"
     },
     "SETTINGS_POPUP": {
       "MESSENGER_HEADING": "Tập lệnh Messenger",
@@ -486,9 +486,9 @@
       "ENABLE_EMAIL_COLLECT_BOX_SUB_TEXT": "Bật hoặc tắt hộp thu thập email trên cuộc trò chuyện mới",
       "AUTO_ASSIGNMENT": "Bật tự động chuyển nhượng",
       "ENABLE_CSAT": "Bật chỉ số đo lường sự hài lòng khách hàng",
-      "SENDER_NAME_SECTION": "Enable Agent Name in Email",
+      "SENDER_NAME_SECTION": "Kích hoạt tên đại lý trong email",
       "ENABLE_CSAT_SUB_TEXT": "Bật / Tắt khảo sát CSAT (Mức độ hài lòng của khách hàng) sau khi giải quyết cuộc trò chuyện",
-      "SENDER_NAME_SECTION_TEXT": "Enable/Disable showing Agent's name in email, if disabled it will show business name",
+      "SENDER_NAME_SECTION_TEXT": "Bật/Tắt hiển thị tên Đại lý trong email, nếu tắt sẽ hiển thị tên doanh nghiệp",
       "ENABLE_CONTINUITY_VIA_EMAIL": "Bật tiếp tục cuộc trò chuyện qua email",
       "ENABLE_CONTINUITY_VIA_EMAIL_SUB_TEXT": "Cuộc trò chuyện sẽ tiếp tục qua email nếu có địa chỉ email liên lạc.",
       "LOCK_TO_SINGLE_CONVERSATION": "Khóa cuộc trò chuyện duy nhất",
@@ -500,7 +500,7 @@
       "HMAC_DESCRIPTION": "With this key you can generate a secret token that can be used to verify the identity of your users.",
       "HMAC_LINK_TO_DOCS": "You can read more here.",
       "HMAC_MANDATORY_VERIFICATION": "Bắt buộc Xác thực danh tính người dùng",
-      "HMAC_MANDATORY_DESCRIPTION": "If enabled, requests that cannot be verified will be rejected.",
+      "HMAC_MANDATORY_DESCRIPTION": "Nếu được bật, các yêu cầu không thể xác minh sẽ bị từ chối.",
       "INBOX_IDENTIFIER": "Định danh hộp thư đến",
       "INBOX_IDENTIFIER_SUB_TEXT": "Dùng token định danh hộp thư đến hiện ở đây để xác thực các ứng dụng khách API của bạn.",
       "FORWARD_EMAIL_TITLE": "Chuyển tiếp đến Email",
@@ -508,21 +508,21 @@
       "ALLOW_MESSAGES_AFTER_RESOLVED": "Cho phép nhắn tin sau khi cuộc trò chuyện được giải quyết",
       "ALLOW_MESSAGES_AFTER_RESOLVED_SUB_TEXT": "Cho phép người dùng cuối nhắn tin sau khi cuộc trò chuyện được giải quyết.",
       "WHATSAPP_SECTION_SUBHEADER": "Khóa API này được sử dụng để tích hợp với các API WhatsApp.",
-      "WHATSAPP_SECTION_UPDATE_SUBHEADER": "Enter the new API key to be used for the integration with the WhatsApp APIs.",
+      "WHATSAPP_SECTION_UPDATE_SUBHEADER": "Nhập khóa API mới sẽ được sử dụng để tích hợp với API WhatsApp.",
       "WHATSAPP_SECTION_TITLE": "Khoá API",
       "WHATSAPP_SECTION_UPDATE_TITLE": "Update API Key",
       "WHATSAPP_SECTION_UPDATE_PLACEHOLDER": "Enter the new API Key here",
       "WHATSAPP_SECTION_UPDATE_BUTTON": "Cập nhật",
       "WHATSAPP_WEBHOOK_TITLE": "Mã xác minh Webhook",
-      "WHATSAPP_WEBHOOK_SUBHEADER": "This token is used to verify the authenticity of the webhook endpoint.",
-      "UPDATE_PRE_CHAT_FORM_SETTINGS": "Update Pre Chat Form Settings"
+      "WHATSAPP_WEBHOOK_SUBHEADER": "Mã thông báo này được dùng để xác minh tính xác thực của điểm cuối webhook.",
+      "UPDATE_PRE_CHAT_FORM_SETTINGS": "Cập nhật cài đặt biểu mẫu trò chuyện trước"
     },
     "HELP_CENTER": {
-      "LABEL": "Help Center",
-      "PLACEHOLDER": "Select Help Center",
-      "SELECT_PLACEHOLDER": "Select Help Center",
-      "REMOVE": "Remove Help Center",
-      "SUB_TEXT": "Attach a Help Center with the inbox"
+      "LABEL": "Trung tâm trợ giúp",
+      "PLACEHOLDER": "Chọn Trung tâm trợ giúp",
+      "SELECT_PLACEHOLDER": "Chọn Trung tâm trợ giúp",
+      "REMOVE": "Xóa Trung tâm trợ giúp",
+      "SUB_TEXT": "Đính kèm Trung tâm trợ giúp với hộp thư đến"
     },
     "AUTO_ASSIGNMENT": {
       "MAX_ASSIGNMENT_LIMIT": "Giới hạn tự động phân công tối đa",
@@ -569,7 +569,7 @@
       "UPDATE": "Cập nhật tuỳ chỉnh giờ làm việc",
       "TOGGLE_AVAILABILITY": "Kích hoạt tính khả dụng của doanh nghiệp cho hộp thư đến này",
       "UNAVAILABLE_MESSAGE_LABEL": "Thông báo không có sẵn cho khách truy cập",
-      "TOGGLE_HELP": "Enabling business availability will show the available hours on live chat widget even if all the agents are offline. Outside available hours visitors can be warned with a message and a pre-chat form.",
+      "TOGGLE_HELP": "Việc bật tính khả dụng của doanh nghiệp sẽ hiển thị số giờ khả dụng trên tiện ích trò chuyện trực tiếp ngay cả khi tất cả các tổng đài viên đều ngoại tuyến. Ngoài giờ làm việc, khách truy cập có thể được cảnh báo bằng tin nhắn và biểu mẫu trò chuyện trước.",
       "DAY": {
         "ENABLE": "Kích hoạt tính khả dụng cho hôm nay",
         "UNAVAILABLE": "Không có sẵn",
@@ -585,7 +585,7 @@
       "NOTE_TEXT": "Để bật chế độ SMTP, xin hãy cấu hình IMAP.",
       "UPDATE": "Cập nhật chi tiết IMAP",
       "TOGGLE_AVAILABILITY": "Kích hoạt cấu hình IMAP cho hộp thư đến này",
-      "TOGGLE_HELP": "Enabling IMAP will help the user to receive email",
+      "TOGGLE_HELP": "Kích hoạt IMAP sẽ giúp người dùng nhận được email",
       "EDIT": {
         "SUCCESS_MESSAGE": "Tuỳ chỉnh IMAP được cập nhật thành công",
         "ERROR_MESSAGE": "Không thể cập nhật tuỳ chỉnh IMAP"
@@ -696,7 +696,7 @@
         },
         "WIDGET_VIEW_OPTION": {
           "PREVIEW": "Xem trước",
-          "SCRIPT": "Kịch bản"
+          "SCRIPT": "Script"
         },
         "WIDGET_BUBBLE_POSITION": {
           "LEFT": "Trái",
