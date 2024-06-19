@@ -16,7 +16,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "ruby:prettier": "bundle exec rubocop -a",
-    "size": "size-limit"
+    "size": "size-limit",
+    "build-docker-file": "docker buildx build --platform linux/amd64 -t warcraft14115/chatwoot:latest -f ./docker/Dockerfile ."
   },
   "size-limit": [
     {

@@ -10,7 +10,7 @@
     "PASSWORD_UPDATE_SUCCESS": "Mật khẩu của bạn đã được thay đổi thành công",
     "AFTER_EMAIL_CHANGED": "Hồ sơ của bạn đã được cập nhật thành công, vui lòng đăng nhập lại khi thông tin đăng nhập của bạn được thay đổi",
     "FORM": {
-      "PICTURE": "Profile Picture",
+      "PICTURE": "Ảnh đại diện",
       "AVATAR": "Hình ảnh hồ sơ cá nhân",
       "ERROR": "Vui lòng sửa lỗi biểu mẫu",
       "REMOVE_IMAGE": "Xoá",
@@ -41,9 +41,9 @@
         "BTN_TEXT": "Lưu chữ ký tin nhắn",
         "API_ERROR": "Không thể lưu chữ ký! Thử lại",
         "API_SUCCESS": "Chữ ký được lưu thành công",
-        "IMAGE_UPLOAD_ERROR": "Couldn't upload image! Try again",
-        "IMAGE_UPLOAD_SUCCESS": "Image added successfully. Please click on save to save the signature",
-        "IMAGE_UPLOAD_SIZE_ERROR": "Kích thước ảnh phải nhỏ hơn {size}MB"
+        "IMAGE_UPLOAD_ERROR": "Không thể tải hình ảnh lên! Thử lại",
+        "IMAGE_UPLOAD_SUCCESS": "Đã thêm hình ảnh thành công. Hãy nhấn lưu để lưu chữ ký",
+        "IMAGE_UPLOAD_SIZE_ERROR": "Hình ảnh kích thước phải nhỏ hơn {size}MB"
       },
       "MESSAGE_SIGNATURE": {
         "LABEL": "Chữ ký tin nhắn",
@@ -69,7 +69,7 @@
           "ALL": "Tất cả"
         },
         "ALERT_TYPE": {
-          "TITLE": "Alert events for conversations:",
+          "TITLE": "Thông báo sự kiện cho cuộc trò chuyện:",
           "NONE": "Không có",
           "ASSIGNED": "Cuộc trò chuyện được phân công",
           "ALL_CONVERSATIONS": "Tất cả cuộc trò chuyện"
@@ -90,27 +90,27 @@
         "CONVERSATION_CREATION": "Gửi thông báo qua email khi cuộc trò chuyện mới được tạo",
         "CONVERSATION_MENTION": "Gửi thông báo email khi bạn được nhắc đến trong 1 cuộc trò chuyện",
         "ASSIGNED_CONVERSATION_NEW_MESSAGE": "Gửi thông báo email khi có một tin nhắn mới được tạo trong cuộc trò chuyện được phân công",
-        "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "Send email notifications when a new message is created in a participating conversation",
-        "SLA_MISSED_FIRST_RESPONSE": "Send email notifications when a conversation misses first response SLA",
-        "SLA_MISSED_NEXT_RESPONSE": "Send email notifications when a conversation misses next response SLA",
-        "SLA_MISSED_RESOLUTION": "Send email notifications when a conversation misses resolution SLA"
+        "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "Gửi thông báo qua email khi có tin nhắn mới được tạo trong cuộc trò chuyện đang tham gia",
+        "SLA_MISSED_FIRST_RESPONSE": "Gửi thông báo qua email khi cuộc trò chuyện bỏ lỡ câu trả lời đầu tiên SLA",
+        "SLA_MISSED_NEXT_RESPONSE": "Gửi thông báo qua email khi cuộc trò chuyện bỏ lỡ câu trả lời tiếp theo SLA",
+        "SLA_MISSED_RESOLUTION": "Gửi thông báo qua email khi cuộc trò chuyện bỏ lỡ câu trả lời tiếp theo SLA"
       },
       "NOTIFICATIONS": {
-        "TITLE": "Notification preferences",
-        "TYPE_TITLE": "Notification type",
+        "TITLE": "Tùy chọn thông báo",
+        "TYPE_TITLE": "Loại thông báo",
         "EMAIL": "Email",
-        "PUSH": "Push notification",
+        "PUSH": "Đẩy thông báo",
         "TYPES": {
-          "CONVERSATION_CREATED": "A new conversation is created",
-          "CONVERSATION_ASSIGNED": "A conversation is assigned to you",
-          "CONVERSATION_MENTION": "You are mentioned in a conversation",
-          "ASSIGNED_CONVERSATION_NEW_MESSAGE": "A new message is created in an assigned conversation",
-          "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "A new message is created in a participating conversation",
-          "SLA_MISSED_FIRST_RESPONSE": "A conversation misses first response SLA",
-          "SLA_MISSED_NEXT_RESPONSE": "A conversation misses next response SLA",
-          "SLA_MISSED_RESOLUTION": "A conversation misses resolution SLA"
+          "CONVERSATION_CREATED": "Một cuộc trò chuyện mới được tạo ra",
+          "CONVERSATION_ASSIGNED": "Một cuộc trò chuyện được giao cho bạn",
+          "CONVERSATION_MENTION": "Bạn được đề cập trong một cuộc trò chuyện",
+          "ASSIGNED_CONVERSATION_NEW_MESSAGE": "Một tin nhắn mới được tạo trong một cuộc trò chuyện được chỉ định",
+          "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "Một thông điệp mới được tạo trong một cuộc trò chuyện tham gia",
+          "SLA_MISSED_FIRST_RESPONSE": "Một cuộc trò chuyện bỏ lỡ SLA phản hồi đầu tiên",
+          "SLA_MISSED_NEXT_RESPONSE": "Một cuộc trò chuyện bỏ lỡ SLA phản hồi tiếp theo",
+          "SLA_MISSED_RESOLUTION": "Một cuộc trò chuyện bỏ lỡ độ phân giải SLA"
         },
-        "BROWSER_PERMISSION": "Enable push notifications for your browser so you’re able to receive them"
+        "BROWSER_PERMISSION": "Bật thông báo đẩy cho trình duyệt của bạn để bạn có thể nhận được chúng"
       },
       "API": {
         "UPDATE_SUCCESS": "Tùy chọn thông báo của bạn đã được cập nhật thành công",
@@ -123,11 +123,11 @@
         "CONVERSATION_CREATION": "Gửi thông báo khi cuộc trò chuyện mới được tạo",
         "CONVERSATION_MENTION": "Gửi thông báo đẩy khi bạn được nhắc đến trong 1 cuộc trò chuyện",
         "ASSIGNED_CONVERSATION_NEW_MESSAGE": "Gửi thông báo đẩy khi có một tin nhắn mới được tạo trong cuộc trò chuyện được phân công",
-        "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "Send push notifications when a new message is created in a participating conversation",
+        "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "Gửi thông báo đẩy khi một tin nhắn mới được tạo trong một cuộc trò chuyện tham gia",
         "HAS_ENABLED_PUSH": "Bạn đã bật tính năng thông báo cho trình duyệt này.",
         "REQUEST_PUSH": "Bật thông báo",
-        "SLA_MISSED_FIRST_RESPONSE": "Send push notifications when a conversation misses first response SLA",
-        "SLA_MISSED_NEXT_RESPONSE": "Send push notifications when a conversation misses next response SLA",
+        "SLA_MISSED_FIRST_RESPONSE": "Gửi thông báo đẩy khi một cuộc trò chuyện bỏ lỡ SLA phản hồi đầu tiên",
+        "SLA_MISSED_NEXT_RESPONSE": "Gửi thông báo đẩy khi một cuộc trò chuyện bỏ lỡ SLA phản hồi tiếp theo",
         "SLA_MISSED_RESOLUTION": "Send push notifications when a conversation misses resolution SLA"
       },
       "PROFILE_IMAGE": {
@@ -145,11 +145,7 @@
       },
       "AVAILABILITY": {
         "LABEL": "Khả dụng",
-        "STATUSES_LIST": [
-          "Trực Tuyến",
-          "Bận",
-          "Không Trực Tuyến"
-        ],
+        "STATUSES_LIST": ["Trực Tuyến", "Bận", "Không Trực Tuyến"],
         "SET_AVAILABILITY_SUCCESS": "Tính khả dụng đã được thiết lập thành công",
         "SET_AVAILABILITY_ERROR": "Không thể đặt, vui lòng thử lại"
       },
@@ -190,9 +186,9 @@
     "TRIAL_MESSAGE": "ngày dùng thử còn lại.",
     "TRAIL_BUTTON": "Mua Ngay",
     "DELETED_USER": "Người dùng bị xoá",
-    "EMAIL_VERIFICATION_PENDING": "It seems that you haven't verified your email address yet. Please check your inbox for the verification email.",
-    "RESEND_VERIFICATION_MAIL": "Resend verification email",
-    "EMAIL_VERIFICATION_SENT": "Verification email has been sent. Please check your inbox.",
+    "EMAIL_VERIFICATION_PENDING": "Có vẻ như bạn chưa xác minh địa chỉ email của mình. Vui lòng kiểm tra hộp thư đến của bạn để biết email xác minh.",
+    "RESEND_VERIFICATION_MAIL": "Gửi lại email xác minh",
+    "EMAIL_VERIFICATION_SENT": "Email xác minh đã được gửi. Hãy kiểm tra hộp thư đến của bạn.",
     "ACCOUNT_SUSPENDED": {
       "TITLE": "Tài khoản bị ngưng",
       "MESSAGE": "Tài khoản của bạn bị tạm ngưng. Vui lòng liên hệ với nhóm hỗ trợ để biết thêm thông tin."
@@ -201,8 +197,8 @@
   "COMPONENTS": {
     "CODE": {
       "BUTTON_TEXT": "Sao Chép",
-      "CODEPEN": "Open in CodePen",
-      "COPY_SUCCESSFUL": "Copied to clipboard"
+      "CODEPEN": "Mở trong Codepen",
+      "COPY_SUCCESSFUL": "Sao chép vào clipboard"
     },
     "SHOW_MORE_BLOCK": {
       "SHOW_MORE": "Xem thêm",
