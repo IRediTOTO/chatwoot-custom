@@ -18,7 +18,7 @@ import {
 import { setCookieWithDomain } from '../sdk/cookieHelpers';
 import { SDK_SET_BUBBLE_VISIBILITY } from 'shared/constants/sharedFrameEvents';
 
-const runSDK = async ({ baseUrl, websiteToken }) => {
+const runSDK = ({ baseUrl, websiteToken }) => {
   if (window.$chatwoot) {
     return;
   }
@@ -197,7 +197,7 @@ const runSDK = async ({ baseUrl, websiteToken }) => {
     },
   };
 
-  await IFrameHelper.createFrame({
+  IFrameHelper.createFrame({
     baseUrl,
     websiteToken,
   });
@@ -205,5 +205,4 @@ const runSDK = async ({ baseUrl, websiteToken }) => {
 
 window.chatwootSDK = {
   run: runSDK,
-  IFrameHelper,
 };

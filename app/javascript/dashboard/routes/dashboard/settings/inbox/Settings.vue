@@ -79,7 +79,7 @@
           "
         />
         <woot-input
-          v-if="isAWebWidgetInbox && isSuperAdmin"
+          v-if="isAWebWidgetInbox"
           v-model.trim="channelWelcomeTitle"
           class="w-3/4 pb-4"
           :label="
@@ -183,7 +183,7 @@
           </p>
         </label>
 
-        <label v-if="isAWebWidgetInbox" class="w-3/4 pb-4 hidden">
+        <label v-if="isAWebWidgetInbox" class="w-3/4 pb-4">
           {{ $t('INBOX_MGMT.SETTINGS_POPUP.ENABLE_EMAIL_COLLECT_BOX') }}
           <select v-model="emailCollectEnabled">
             <option :value="true">
@@ -336,7 +336,7 @@
         </div>
       </settings-section>
       <settings-section
-        v-if="(isAWebWidgetInbox || isAnEmailChannel) && isSuperAdmin"
+        v-if="isAWebWidgetInbox || isAnEmailChannel"
         :title="$t('INBOX_MGMT.EDIT.SENDER_NAME_SECTION.TITLE')"
         :sub-title="$t('INBOX_MGMT.EDIT.SENDER_NAME_SECTION.SUB_TEXT')"
         :show-border="false"
@@ -442,7 +442,6 @@ import WidgetBuilder from './WidgetBuilder.vue';
 import BotConfiguration from './components/BotConfiguration.vue';
 import { FEATURE_FLAGS } from '../../../../featureFlags';
 import SenderNameExamplePreview from './components/SenderNameExamplePreview.vue';
-import adminMixin from 'dashboard/mixins/isAdmin';
 
 export default {
   components: {
@@ -459,7 +458,7 @@ export default {
     SenderNameExamplePreview,
     MicrosoftReauthorize,
   },
-  mixins: [alertMixin, configMixin, inboxMixin, adminMixin],
+  mixins: [alertMixin, configMixin, inboxMixin],
   data() {
     return {
       avatarFile: null,

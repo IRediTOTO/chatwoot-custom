@@ -24,7 +24,6 @@
         variant="smooth"
         color-scheme="alert"
         size="tiny"
-        :is-disabled="!isSuperAdmin"
         icon="dismiss-circle"
         @click="$emit('delete', agentBot, index)"
       />
@@ -34,11 +33,9 @@
 <script>
 import ShowMore from 'dashboard/components/widgets/ShowMore.vue';
 import AgentBotType from './AgentBotType.vue';
-import adminMixin from 'dashboard/mixins/isAdmin';
 
 export default {
   components: { ShowMore, AgentBotType },
-  mixins: [adminMixin],
   props: {
     agentBot: {
       type: Object,

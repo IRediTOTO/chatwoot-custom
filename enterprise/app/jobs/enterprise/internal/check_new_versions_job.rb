@@ -8,6 +8,7 @@ module Enterprise::Internal::CheckNewVersionsJob
   private
 
   def update_plan_info
+    return if @instance_info.blank?
 
     update_installation_config(key: 'INSTALLATION_PRICING_PLAN', value: 'enterprise')
     update_installation_config(key: 'INSTALLATION_PRICING_PLAN_QUANTITY', value: 9999999)

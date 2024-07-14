@@ -29,14 +29,14 @@ import SecondaryNavItem from './SecondaryNavItem.vue';
 import AccountContext from './AccountContext.vue';
 import { mapGetters } from 'vuex';
 import { FEATURE_FLAGS } from '../../../featureFlags';
-import adminMixin from 'dashboard/mixins/isAdmin';
+import { hasPermissions } from '../../../helper/permissionsHelper';
+import { routesWithPermissions } from '../../../routes';
 
 export default {
   components: {
     AccountContext,
     SecondaryNavItem,
   },
-  mixins: [adminMixin],
   props: {
     accountId: {
       type: Number,
@@ -62,9 +62,9 @@ export default {
       type: Object,
       default: () => {},
     },
-    currentRole: {
-      type: String,
-      default: '',
+    currentUser: {
+      type: Object,
+      default: () => {},
     },
     isOnChatwootCloud: {
       type: Boolean,
@@ -82,27 +82,19 @@ export default {
       return this.customViews.filter(view => view.filter_type === 'contact');
     },
     accessibleMenuItems() {
-      if (!this.currentRole) {
-        return [];
-      }
-      const menuItemsFilteredByRole = this.menuConfig.menuItems.filter(
-        menuItem =>
-          window.roleWiseRoutes[this.currentRole].indexOf(
-            menuItem.toStateName
-          ) > -1
+      const menuItemsFilteredByPermissions = this.menuConfig.menuItems.filter(
+        menuItem => {
+          const { permissions: userPermissions = [] } = this.currentUser;
+          return hasPermissions(
+            routesWithPermissions[menuItem.toStateName],
+            userPermissions
+          );
+        }
       );
-      // eslint-disable-next-line no-console
-
-      return menuItemsFilteredByRole.filter(item => {
+      return menuItemsFilteredByPermissions.filter(item => {
         if (item.showOnlyOnCloud) {
           return this.isOnChatwootCloud;
         }
-
-        // remove inbox section if user is not super admin
-        // if (!this.isSuperAdmin && item.featureFlag === 'inbox_management') {
-        //   return false;
-        // }
-
         return true;
       });
     },
@@ -238,11 +230,6 @@ export default {
     },
     additionalSecondaryMenuItems() {
       let conversationMenuItems = [this.inboxSection, this.labelSection];
-      // remove inbox section if user is not super admin
-      if (!this.isSuperAdmin) {
-        conversationMenuItems = [this.labelSection];
-      }
-
       let contactMenuItems = [this.contactLabelSection];
       if (this.teams.length) {
         conversationMenuItems = [this.teamSection, ...conversationMenuItems];

@@ -1,7 +1,7 @@
 {
   "FILTER": {
     "TITLE": "Lọc cuộc hội thoại",
-    "SUBTITLE": "Thêm bộ lọc của bạn bên dưới và nhấn 'Áp dụng bộ lọc' để loại bỏ sự lộn xộn trong cuộc trò chuyện.",
+    "SUBTITLE": "Add your filters below and hit 'Apply filters' to cut through the chat clutter.",
     "EDIT_CUSTOM_FILTER": "Edit Folder",
     "CUSTOM_VIEWS_SUBTITLE": "Add or remove filters and update your folder.",
     "ADD_NEW_FILTER": "Add filter",
