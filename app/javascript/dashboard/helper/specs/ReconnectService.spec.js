@@ -37,8 +37,10 @@ const storeMock = {
 
 const routerMock = {
   currentRoute: {
-    name: '',
-    params: { conversation_id: null },
+    value: {
+      name: '',
+      params: { conversation_id: null },
+    },
   },
 };
 
@@ -102,7 +104,7 @@ describe('ReconnectService', () => {
       expect(reconnectService.getSecondsSinceDisconnect()).toBe(0);
     });
 
-    it('should return the number of seconds since disconnect', () => {
+    it('should return the number of seconds + threshold since disconnect', () => {
       reconnectService.disconnectTime = new Date();
       differenceInSeconds.mockReturnValue(100);
       expect(reconnectService.getSecondsSinceDisconnect()).toBe(100);
@@ -128,12 +130,21 @@ describe('ReconnectService', () => {
   });
 
   describe('fetchConversations', () => {
+    it('should update the filters with disconnected time and the threshold', async () => {
+      reconnectService.getSecondsSinceDisconnect = vi.fn().mockReturnValue(100);
+      await reconnectService.fetchConversations();
+      expect(storeMock.dispatch).toHaveBeenCalledWith('updateChatListFilters', {
+        page: null,
+        updatedWithin: 115,
+      });
+    });
+
     it('should dispatch updateChatListFilters and fetchAllConversations', async () => {
       reconnectService.getSecondsSinceDisconnect = vi.fn().mockReturnValue(100);
       await reconnectService.fetchConversations();
       expect(storeMock.dispatch).toHaveBeenCalledWith('updateChatListFilters', {
         page: null,
-        updatedWithin: 100,
+        updatedWithin: 115,
       });
       expect(storeMock.dispatch).toHaveBeenCalledWith('fetchAllConversations');
     });
@@ -213,7 +224,7 @@ describe('ReconnectService', () => {
 
   describe('fetchConversationMessagesOnReconnect', () => {
     it('should dispatch syncActiveConversationMessages if conversationId exists', async () => {
-      routerMock.currentRoute.params.conversation_id = 1;
+      routerMock.currentRoute.value.params.conversation_id = 1;
       await reconnectService.fetchConversationMessagesOnReconnect();
       expect(storeMock.dispatch).toHaveBeenCalledWith(
         'syncActiveConversationMessages',
@@ -222,7 +233,7 @@ describe('ReconnectService', () => {
     });
 
     it('should not dispatch syncActiveConversationMessages if conversationId does not exist', async () => {
-      routerMock.currentRoute.params.conversation_id = null;
+      routerMock.currentRoute.value.params.conversation_id = null;
       await reconnectService.fetchConversationMessagesOnReconnect();
       expect(storeMock.dispatch).not.toHaveBeenCalledWith(
         'syncActiveConversationMessages',
@@ -296,7 +307,7 @@ describe('ReconnectService', () => {
 
   describe('setConversationLastMessageId', () => {
     it('should dispatch setConversationLastMessageId if conversationId exists', async () => {
-      routerMock.currentRoute.params.conversation_id = 1;
+      routerMock.currentRoute.value.params.conversation_id = 1;
       await reconnectService.setConversationLastMessageId();
       expect(storeMock.dispatch).toHaveBeenCalledWith(
         'setConversationLastMessageId',
@@ -305,7 +316,7 @@ describe('ReconnectService', () => {
     });
 
     it('should not dispatch setConversationLastMessageId if conversationId does not exist', async () => {
-      routerMock.currentRoute.params.conversation_id = null;
+      routerMock.currentRoute.value.params.conversation_id = null;
       await reconnectService.setConversationLastMessageId();
       expect(storeMock.dispatch).not.toHaveBeenCalledWith(
         'setConversationLastMessageId',

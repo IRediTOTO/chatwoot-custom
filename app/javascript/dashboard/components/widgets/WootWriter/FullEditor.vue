@@ -1,18 +1,3 @@
-<template>
-  <div>
-    <div class="editor-root editor--article">
-      <input
-        ref="imageUploadInput"
-        type="file"
-        accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
-        hidden
-        @change="onFileChange"
-      />
-      <div ref="editor" />
-    </div>
-  </div>
-</template>
-
 <script>
 import {
   fullSchema,
@@ -23,10 +8,11 @@ import {
   EditorState,
   Selection,
 } from '@chatwoot/prosemirror-schema';
+import imagePastePlugin from '@chatwoot/prosemirror-schema/src/plugins/image';
 import { checkFileSizeLimit } from 'shared/helpers/FileHelper';
-import alertMixin from 'shared/mixins/alertMixin';
+import { useAlert } from 'dashboard/composables';
+import { useUISettings } from 'dashboard/composables/useUISettings';
 import keyboardEventListenerMixins from 'shared/mixins/keyboardEventListenerMixins';
-import uiSettingsMixin from 'dashboard/mixins/uiSettings';
 
 const MAXIMUM_FILE_UPLOAD_SIZE = 4; // in MB
 const createState = (
@@ -50,32 +36,34 @@ const createState = (
   });
 };
 
+let editorView = null;
+let state;
+
 export default {
-  mixins: [keyboardEventListenerMixins, uiSettingsMixin, alertMixin],
+  mixins: [keyboardEventListenerMixins],
   props: {
-    value: { type: String, default: '' },
+    modelValue: { type: String, default: '' },
     editorId: { type: String, default: '' },
     placeholder: { type: String, default: '' },
     enabledMenuOptions: { type: Array, default: () => [] },
   },
-  data() {
+  emits: ['blur', 'input', 'update:modelValue', 'keyup', 'focus', 'keydown'],
+  setup() {
+    const { uiSettings, updateUISettings } = useUISettings();
+
     return {
-      editorView: null,
-      state: undefined,
-      plugins: [],
+      uiSettings,
+      updateUISettings,
     };
   },
-  computed: {
-    contentFromEditor() {
-      if (this.editorView) {
-        return ArticleMarkdownSerializer.serialize(this.editorView.state.doc);
-      }
-      return '';
-    },
+  data() {
+    return {
+      plugins: [imagePastePlugin(this.handleImageUpload)],
+    };
   },
   watch: {
-    value(newValue = '') {
-      if (newValue !== this.contentFromEditor) {
+    modelValue(newValue = '') {
+      if (newValue !== this.contentFromEditor()) {
         this.reloadState();
       }
     },
@@ -83,9 +71,10 @@ export default {
       this.reloadState();
     },
   },
+
   created() {
-    this.state = createState(
-      this.value,
+    state = createState(
+      this.modelValue,
       this.placeholder,
       this.plugins,
       { onImageUpload: this.openFileBrowser },
@@ -95,12 +84,36 @@ export default {
   mounted() {
     this.createEditorView();
 
-    this.editorView.updateState(this.state);
+    editorView.updateState(state);
     this.focusEditorInputField();
   },
   methods: {
+    contentFromEditor() {
+      if (editorView) {
+        return ArticleMarkdownSerializer.serialize(editorView.state.doc);
+      }
+      return '';
+    },
     openFileBrowser() {
       this.$refs.imageUploadInput.click();
+    },
+    async handleImageUpload(url) {
+      try {
+        const fileUrl = await this.$store.dispatch(
+          'articles/uploadExternalImage',
+          {
+            portalSlug: this.$route.params.portalSlug,
+            url,
+          }
+        );
+
+        return fileUrl;
+      } catch (error) {
+        useAlert(
+          this.$t('HELP_CENTER.ARTICLE_EDITOR.IMAGE_UPLOAD.UN_AUTHORIZED_ERROR')
+        );
+        return '';
+      }
     },
     onFileChange() {
       const file = this.$refs.imageUploadInput.files[0];
@@ -108,7 +121,7 @@ export default {
       if (checkFileSizeLimit(file, MAXIMUM_FILE_UPLOAD_SIZE)) {
         this.uploadImageToStorage(file);
       } else {
-        this.showAlert(
+        useAlert(
           this.$t('HELP_CENTER.ARTICLE_EDITOR.IMAGE_UPLOAD.ERROR_FILE_SIZE', {
             size: MAXIMUM_FILE_UPLOAD_SIZE,
           })
@@ -127,82 +140,80 @@ export default {
         if (fileUrl) {
           this.onImageUploadStart(fileUrl);
         }
-        this.showAlert(
-          this.$t('HELP_CENTER.ARTICLE_EDITOR.IMAGE_UPLOAD.SUCCESS')
-        );
       } catch (error) {
-        this.showAlert(
-          this.$t('HELP_CENTER.ARTICLE_EDITOR.IMAGE_UPLOAD.ERROR')
-        );
+        useAlert(this.$t('HELP_CENTER.ARTICLE_EDITOR.IMAGE_UPLOAD.ERROR'));
       }
     },
     onImageUploadStart(fileUrl) {
-      const { selection } = this.editorView.state;
+      const { selection } = editorView.state;
       const from = selection.from;
-      const node = this.editorView.state.schema.nodes.image.create({
+      const node = editorView.state.schema.nodes.image.create({
         src: fileUrl,
       });
-      const paragraphNode = this.editorView.state.schema.node('paragraph');
+      const paragraphNode = editorView.state.schema.node('paragraph');
       if (node) {
         // Insert the image and the caption wrapped inside a paragraph
-        const tr = this.editorView.state.tr
+        const tr = editorView.state.tr
           .replaceSelectionWith(paragraphNode)
           .insert(from + 1, node);
 
-        this.editorView.dispatch(tr.scrollIntoView());
+        editorView.dispatch(tr.scrollIntoView());
         this.focusEditorInputField();
       }
     },
     reloadState() {
-      this.state = createState(
-        this.value,
+      state = createState(
+        this.modelValue,
         this.placeholder,
         this.plugins,
         { onImageUpload: this.openFileBrowser },
         this.enabledMenuOptions
       );
-      this.editorView.updateState(this.state);
+      editorView.updateState(state);
       this.focusEditorInputField();
     },
     createEditorView() {
-      this.editorView = new EditorView(this.$refs.editor, {
-        state: this.state,
+      editorView = new EditorView(this.$refs.editor, {
+        state: state,
         dispatchTransaction: tx => {
-          this.state = this.state.apply(tx);
-          this.emitOnChange();
+          state = state.apply(tx);
+          editorView.updateState(state);
+          if (tx.docChanged) {
+            this.emitOnChange();
+          }
         },
         handleDOMEvents: {
-          keyup: () => {
-            this.onKeyup();
-          },
-          keydown: (view, event) => {
-            this.onKeydown(event);
-          },
-          focus: () => {
-            this.onFocus();
-          },
-          blur: () => {
-            this.onBlur();
+          keyup: this.onKeyup,
+          focus: this.onFocus,
+          blur: this.onBlur,
+          keydown: this.onKeydown,
+          paste: (view, event) => {
+            const data = event.clipboardData.files;
+            if (data.length > 0) {
+              data.forEach(file => {
+                // Check if the file is an image
+                if (file.type.includes('image')) {
+                  this.uploadImageToStorage(file);
+                }
+              });
+              event.preventDefault();
+            }
           },
         },
       });
     },
-
     handleKeyEvents() {},
     focusEditorInputField() {
-      const { tr } = this.editorView.state;
+      const { tr } = editorView.state;
       const selection = Selection.atEnd(tr.doc);
 
-      this.editorView.dispatch(tr.setSelection(selection));
-      this.editorView.focus();
+      editorView.dispatch(tr.setSelection(selection));
+      editorView.focus();
     },
-
     emitOnChange() {
-      this.editorView.updateState(this.state);
-
-      this.$emit('input', this.contentFromEditor);
+      this.$emit('update:modelValue', this.contentFromEditor());
+      this.$emit('input', this.contentFromEditor());
     },
-
     onKeyup() {
       this.$emit('keyup');
     },
@@ -219,8 +230,23 @@ export default {
 };
 </script>
 
+<template>
+  <div>
+    <div class="editor-root editor--article">
+      <input
+        ref="imageUploadInput"
+        type="file"
+        accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
+        hidden
+        @change="onFileChange"
+      />
+      <div ref="editor" />
+    </div>
+  </div>
+</template>
+
 <style lang="scss">
-@import '~@chatwoot/prosemirror-schema/src/styles/article.scss';
+@import '@chatwoot/prosemirror-schema/src/styles/article.scss';
 
 .ProseMirror-menubar-wrapper {
   display: flex;
